@@ -11,10 +11,8 @@ class Country extends Component {
         
         this.state = {
             color: '#b0b0b0',
-            pathD: null,
-            pathB: null, 
             stroke: '#808080',
-            strokeWidth: '0px',
+            strokeWidth: '0px'
         }
     }
 
@@ -47,41 +45,29 @@ class Country extends Component {
         console.log(this.props.datum.properties.name)
     }
 
-    genPathFunction = () => {
-        let container = document.getElementById("canvas")
-
+    getPath = (datum) => {        
         let projection = d3.geoOrthographic()
-            .translate([container.offsetWidth/2, container.offsetHeight/2])
-            .scale(200)
-            .rotate([0, 0, 23.5])
+            .translate([this.props.canvasHolder.offsetWidth/2, this.props.canvasHolder.offsetHeight/2])
+            .scale(this.props.scale)
+            .rotate(this.props.globeRotation)
 
         let path = d3.geoPath()
             .projection(projection)
 
-        return path
-    }
-
-    componentDidMount(){
-        this.setState({
-            pathD: this.genPathFunction()(this.props.datum),
-            pathB: this.genPathFunction()({type: "Sphere"})
-        })
+        return path(datum)
     }
 
     render() {
         return (
-            <>
-            <path d={this.state.pathB}
-                  style={{fill:"none", strokeWidth:"0.1px", stroke:"a0a0a0"}}></path>
             <path onMouseOver={this.handleMouseOver} 
                   onMouseOut={this.handleMouseOut} 
                   onMouseDown={this.handleMouseDown}
                   onMouseUp={this.handleMouseUp}
                   onClick={this.handleClick}
                   className="country" 
-                  d={this.state.pathD} 
+                  id={this.props.datum.properties.name}
+                  d={this.getPath(this.props.datum)} 
                   style={{fill:this.state.color, stroke:this.state.stroke, strokeWidth:this.state.strokeWidth}}></path>
-            </>
         );
     }
 }
