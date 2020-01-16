@@ -4,15 +4,19 @@ import * as d3 from 'd3'
 
 import { feature } from 'topojson-client'
 
-import world from '../resources/world-countries.json'
+import countriesTopo from '../resources/world-countries.json'
+import continentsTopo from '../resources/world-continents.json'
 
 class Globe extends Component {
 
     constructor(){
+        console.log(countriesTopo)
+        console.log(continentsTopo)
         super()
-        let countries = feature(world, world.objects.countries1).features
+        // let data = feature(countriesTopo, countriesTopo.objects.countries1).features
+        let data = feature(continentsTopo, continentsTopo.objects.continent).features
         this.state = {
-            countriesData: countries
+            drawingData: data
         }
     }
 
@@ -31,7 +35,7 @@ class Globe extends Component {
     genCountries = () => {
         if(this.props.selectable){
             return (
-                this.state.countriesData.map((countryData, i) => {
+                this.state.drawingData.map((countryData, i) => {
                     return (
                         <>
                         <path d={this.getPath({type:"Sphere"})} 
@@ -64,7 +68,7 @@ class Globe extends Component {
         if(!this.props.selectable){
             let group = d3.select(this.refs.anchor)
             group.selectAll(".countries")
-                .data(this.state.countriesData)
+                .data(this.state.drawingData)
                 .enter()
                     .append("path")
                     .classed("countries", true)
@@ -81,7 +85,7 @@ class Globe extends Component {
             group.selectAll(".countries").remove()
 
             group.selectAll(".countries")
-                .data(this.state.countriesData)
+                .data(this.state.drawingData)
                 .enter()
                     .append("path")
                     .classed("countries", true)

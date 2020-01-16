@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import * as d3 from 'd3'
 import topojson from 'topojson'
 import * as d3proj from 'd3-geo-projection'
+import yeet from '../resources/yeet-sound-effect.mp3'
+import africa from '../resources/africa_t3h9tMv.mp3'
 
 class Country extends Component {
 
@@ -14,6 +16,9 @@ class Country extends Component {
             stroke: '#808080',
             strokeWidth: '0px'
         }
+
+        this.yeet = new Audio(yeet);
+        this.africa = new Audio(africa)
     }
 
     handleMouseOver = (evt) => {
@@ -42,10 +47,13 @@ class Country extends Component {
     }
 
     handleClick = (evt) => {
-        console.log(this.props.datum.properties.name)
+        if (this.props.datum.properties.continent == "Africa"){
+            this.africa.play()
+        }
+        console.log(this.props.datum)
     }
 
-    getPath = (datum) => {        
+    getPath = (datum) => {       
         let projection = d3.geoOrthographic()
             .translate([this.props.canvasHolder.offsetWidth/2, this.props.canvasHolder.offsetHeight/2])
             .scale(this.props.scale)

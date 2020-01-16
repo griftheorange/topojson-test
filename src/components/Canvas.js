@@ -7,9 +7,9 @@ class Canvas extends Component {
     state = {
         mounted: false,
         globeRotation: [0, 0, 23.5],
-        selectable: false,
+        selectable: true,
         isRotating: true,
-        lamRotationSpeed: 1,
+        lamRotationSpeed: 10,
         phiRotationSpeed: 0,
         gamRotationSpeed: 0,
         clock: null,
@@ -17,7 +17,9 @@ class Canvas extends Component {
     }
 
     componentDidMount(){
-        this.startClock()
+        if(this.state.isRotating){
+            this.startClock()
+        }
         this.setState({
             mounted: true
         })
@@ -40,7 +42,7 @@ class Canvas extends Component {
         }
 
         this.setState({
-            globeRotation: [update[0]+lam, update[1]+phi, update[2]+gam]
+            globeRotation: [update[0]+lam/40, update[1]+phi/40, update[2]+gam/40]
         })
     }
 
@@ -74,7 +76,7 @@ class Canvas extends Component {
 
     handlePhiChange = (evt) => {
         let newArr = this.state.globeRotation
-        newArr[1] = evt.target.value
+        newArr[1] = parseFloat(evt.target.value)
         this.setState({
             globeRotation: newArr
         })
@@ -82,7 +84,7 @@ class Canvas extends Component {
 
     handleGammaChange = (evt) => {
         let newArr = this.state.globeRotation
-        newArr[2] = evt.target.value
+        newArr[2] = parseFloat(evt.target.value)
         this.setState({
             globeRotation: newArr
         })
@@ -132,7 +134,6 @@ class Canvas extends Component {
 
     startClock = () => {
         let canvas = this
-        console.log(canvas)
         let t = d3.timer(function(elapsed){
             canvas.updateRotation(canvas.state.lamRotationSpeed, canvas.state.phiRotationSpeed, canvas.state.gamRotationSpeed)
             if(canvas.state.isRotating == false){
@@ -147,7 +148,6 @@ class Canvas extends Component {
 
     stopClock = () => {
         this.state.clock.stop()
-        console.log(this.state)
         this.setState({
             clock: null,
             isRotating: false
