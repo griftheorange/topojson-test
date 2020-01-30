@@ -8,7 +8,7 @@ class Canvas extends Component {
         mounted: false,
         globeRotation: [0, 0, 23.5],
         selectable: true,
-        isRotating: true,
+        isRotating: false,
         lamRotationSpeed: 10,
         phiRotationSpeed: 0,
         gamRotationSpeed: 0,

@@ -16,9 +16,6 @@ class Country extends Component {
             stroke: '#808080',
             strokeWidth: '0px'
         }
-
-        this.yeet = new Audio(yeet);
-        this.africa = new Audio(africa)
     }
 
     handleMouseOver = (evt) => {
@@ -47,9 +44,6 @@ class Country extends Component {
     }
 
     handleClick = (evt) => {
-        if (this.props.datum.properties.continent == "Africa"){
-            this.africa.play()
-        }
         console.log(this.props.datum)
     }
 
@@ -65,8 +59,21 @@ class Country extends Component {
         return path(datum)
     }
 
+    getRaisedPath = (datum) => {
+        let projection = d3.geoOrthographic()
+            .translate([this.props.canvasHolder.offsetWidth/2, this.props.canvasHolder.offsetHeight/2])
+            .scale(this.props.scale + 10)
+            .rotate(this.props.globeRotation)
+
+        let path = d3.geoPath()
+            .projection(projection)
+
+        return path(datum)
+    }
+
     render() {
         return (
+            <>
             <path onMouseOver={this.handleMouseOver} 
                   onMouseOut={this.handleMouseOut} 
                   onMouseDown={this.handleMouseDown}
@@ -76,6 +83,7 @@ class Country extends Component {
                   id={this.props.datum.properties.name}
                   d={this.getPath(this.props.datum)} 
                   style={{fill:this.state.color, stroke:this.state.stroke, strokeWidth:this.state.strokeWidth}}></path>
+            </>
         );
     }
 }

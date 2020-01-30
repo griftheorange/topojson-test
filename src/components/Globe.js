@@ -20,17 +20,7 @@ class Globe extends Component {
         }
     }
 
-    getPath = (data) => {        
-        let projection = d3.geoOrthographic()
-            .translate([this.props.canvasHolder.offsetWidth/2, this.props.canvasHolder.offsetHeight/2])
-            .scale(this.props.scale)
-            .rotate(this.props.globeRotation)
-
-        let path = d3.geoPath()
-            .projection(projection)
-
-        return path(data)
-    }
+   
 
     genCountries = () => {
         if(this.props.selectable){
@@ -39,11 +29,11 @@ class Globe extends Component {
                     return (
                         <>
                         <path d={this.getPath({type:"Sphere"})} 
-                              style={{fill:"none", strokeWidth:"0.05px", stroke:"a0a0a0"}}></path>
+                              style={{fill:"none", strokeWidth:"0.05px", stroke:"a0a0a0"}}
+                              ></path>
                         <Country key={i} 
                                  canvasHolder={this.props.canvasHolder} 
                                  globeRotation={this.props.globeRotation} 
-                                 key={i} 
                                  scale={this.props.scale} 
                                  datum={countryData}/>
                         </>
@@ -93,10 +83,36 @@ class Globe extends Component {
                     .attr("d", function(d){return getPath(d)})
     }
 
+    getPath = (datum) => {       
+        let projection = d3.geoOrthographic()
+            .translate([this.props.canvasHolder.offsetWidth/2, this.props.canvasHolder.offsetHeight/2])
+            .scale(this.props.scale)
+            .rotate(this.props.globeRotation)
+
+        let path = d3.geoPath()
+            .projection(projection)
+
+        return path(datum)
+    }
+
+    getRaisedPath = (datum) => {
+        let projection = d3.geoOrthographic()
+            .translate([this.props.canvasHolder.offsetWidth/2, this.props.canvasHolder.offsetHeight/2])
+            .scale(this.props.scale + 10)
+            .rotate(this.props.globeRotation)
+
+        let path = d3.geoPath()
+            .projection(projection)
+
+        return path(datum)
+    }
+
     render() {
         return (
             <>
                 {this.genCountries()}
+                <path className="quakeCircles" d={this.getRaisedPath(d3.geoCircle().center([0, 0]).radius(3)())} style={{fill: "red", opacity: "0.5"}}></path>
+            <path className="quakeCircles" d={this.getPath(d3.geoCircle().center([0, 0]).radius(3)())} style={{fill: "red", opacity: "0.2"}}></path>
             </>
         );
     }
