@@ -9,6 +9,7 @@ import continentsTopo from '../resources/world-continents.json'
 
 class Globe extends Component {
 
+    //imports file as topoJSON, translates to geoJSON format with 'topojson-client' 'feature' function
     constructor(){
         console.log(countriesTopo)
         console.log(continentsTopo)
@@ -21,7 +22,7 @@ class Globe extends Component {
     }
 
    
-
+    //gets a D3 path generator from 'getPath' and passes it each geoJSON feature, generating a corresponding path 
     genCountries = () => {
         if(this.props.selectable){
             return (
@@ -52,6 +53,7 @@ class Globe extends Component {
         }
     }
 
+    //
     componentDidMount(){
         let getPath = this.getPath
 
