@@ -1,3 +1,30 @@
+# TopoGlobe - README
+
+## Concept
+
+The main purpose of this project was a proof-of-concept piece meant to practice implementation of D3 features/functions in a React setting. D3 typically works by directly adding and appending to elements on the DOM, and I wanted to test out ways to adapt it's functions to React's component-state environment for use in follow-up projects.
+
+The results were a relatively simple collection of code, but I've found it to be a useful reference in follow-up projects for the challenges that come with merging vanilla JS libraries with React and common ways to resolve these conflicts.
+
+## Settup
+
+First clone the library with the following line of code: 
+
+
+git clone git@github.com:griftheorange/topojson-test.git
+
+
+Once the file is cloned, cd into the directory then run: 
+- npm install
+- npm start
+This will boot up a development server of the application. Alternatively, you can run "yarn build" to compile a build version, then run serve -s build. This can take a minute or two to compile the build and is not necessary for a project this size.
+
+![alt text](./public/document.gif "Logo Title Text 1")
+
+
+
+# Default Provided Scripts
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
