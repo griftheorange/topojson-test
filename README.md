@@ -2,7 +2,9 @@
 
 ## Concept
 
-The main purpose of this project was a proof-of-concept piece meant to practice implementation of D3 features/functions in a React setting. D3 typically works by directly adding and appending to elements on the DOM, and I wanted to test out ways to adapt it's functions to React's component-state environment for use in follow-up projects.
+The main purpose of this project was a proof-of-concept piece to practice implementation of D3 features/functions in a React setting. D3 typically works by directly adding and appending to elements on the DOM, and I wanted to test out ways to adapt it's functions to React's component-state environment for use in follow-up projects.
+
+I decided to try rendering a globe in React with the D3 library. I wanted to handle all the calculation and projection in D3, and restrict the rendering to React Components. I also wanted to make sure that through React components, I could modularize different parts of the same globe and interact with them individually
 
 The results were a relatively simple collection of code, but I've found it to be a useful reference in follow-up projects for the challenges that come with merging vanilla JS libraries with React and common ways to resolve these conflicts.
 
