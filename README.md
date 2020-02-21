@@ -24,7 +24,7 @@ Once the file is cloned, cd into the directory then run:
 
 This will boot up a development server of the application. Alternatively, you can run "yarn build" to compile a build version, then run serve -s build. This can take a minute or two to compile the build and is not necessary for a project this size.
 
-Once you're done you should be able to mess around with the project like you see above. The features in this implementation are very basic, but again, they provide a great referencepoint and are very easy to expand on. As an example, refer to my sm-frontend repo.
+Once you're done you should be able to mess around with the project like you see above. The features in this implementation are very basic, but again, they provide a great reference point and are very easy to expand on. As an example, refer to my sm-frontend repo.
 
 ## Components
 
@@ -62,15 +62,15 @@ It also has functions that return D3 path generators based on an orthographic pr
 
 The project was origionally rendering every country globally, but was changed to continents to reduce lag. The file name has not been changed which is why countries renders continents, but bear with me.
 
-The Country component recieves a translated geoJSON feature as a prop under datum. It also produces the same D3 path generator which it passes the feature to to get a path attribute. The styles and event listeners of the path can be changed in this file and can resposne to user events. 
+The Country component recieves a translated geoJSON feature as a prop under datum. It also produces the same D3 path generator as the Globe Component, to which it passes the feature to to get a path attribute. The styles and event listeners of the path can be changed in this file, and the path can be made to React to user events. 
 
 For example, I currently have each continent defaulting to a grey color with no border dependent on the component's state. On mouseover, the color state updates to 'orange' visualizing the hover event, and on mouse down the countinent gets a thick grey border. Both of these are removed on mouseout and mouseup respectively.
 
-Also, an onClick listener can be applied to the path that will print out the source feature of the clicked continent, visualized in the gif above.
+Also, an onClick listener can be applied to the path that will print out the source feature of the clicked continent, shown in the gif above.
 
-This component is where the main joining of D3 and React occur, and where all the customization and interactability can be priduced. hover events can be updated to display details of the target, clicks can link to other pages or pull up data. Any React effect can be applied even as the globe rotates in realy time.
+This component is where the main joining of D3 and React occur, and where all the customization and interactability can be produced. Hover events can be updated to display details of the target, clicks can link to other pages or pull up data. Any React effect can be applied even as the globe rotates in real time.
 
-Despite it's simplicity, this provided practice and framework for a great deal of expansion as an applicaiton feature. Again, for an example, please see my sm-front end repo for the frontend implementation of my Seismix webpage.
+Despite it's simplicity, this provided me with practice and a framework for a great deal of expansion as a future applicaiton feature. Again, if you'd like to see a more developed implementation example, please see my sm-frontend repo for the frontend implementation of my Seismix webpage.
 
 # Default Scripts Provided by Create-React-App
 
