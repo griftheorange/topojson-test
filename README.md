@@ -52,8 +52,25 @@ Canvas generates all the state defaults, the forms to alter state, and increment
 
 ### Globe
 
+Globe imports the country features from the local topojson file at /src/resources/world-continents.json, converts them to geoJSON with the 'topojson-client' npm package, and passes them in one-by-one to the Country component.
 
-# Default Provided Scripts
+It also has functions that return D3 path generators based on an orthographic projection. These path generators can be passed geoJSON objects converted from the topojson file and return d attributes that can be applied to React path components. However most of this is handled one level down in the Country Component.
+
+### Country
+
+The project was origionally rendering every country globally, but was changed to continents to reduce lag. The file name has not been changed which is why countries renders continents, but bear with me.
+
+The Country component recieves a translated geoJSON feature as a prop under datum. It also produces the same D3 path generator which it passes the feature to to get a path attribute. The styles and event listeners of the path can be changed in this file and can resposne to user events. 
+
+For example, I currently have each continent defaulting to a grey color with no border dependent on the component's state. On mouseover, the color state updates to 'orange' visualizing the hover event, and on mouse down the countinent gets a thick grey border. Both of these are removed on mouseout and mouseup respectively.
+
+Also, an onClick listener can be applied to the path that will print out the source feature of the clicked continent, visualized in the gif above.
+
+This component is where the main joining of D3 and React occur, and where all the customization and interactability can be priduced. hover events can be updated to display details of the target, clicks can link to other pages or pull up data. Any React effect can be applied even as the globe rotates in realy time.
+
+Despite it's simplicity, this provided practice and framework for a great deal of expansion as an applicaiton feature. Again, for an example, please see my sm-front end repo for the frontend implementation of my Seismix webpage.
+
+# Default Scripts Provided by Create-React-App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
