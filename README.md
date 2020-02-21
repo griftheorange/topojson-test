@@ -11,17 +11,16 @@ The results were a relatively simple collection of code, but I've found it to be
 First clone the library with the following line of code: 
 
 
-git clone git@github.com:griftheorange/topojson-test.git
+    git clone git@github.com:griftheorange/topojson-test.git
 
 
 Once the file is cloned, cd into the directory then run: 
 - npm install
 - npm start
-This will boot up a development server of the application. Alternatively, you can run "yarn build" to compile a build version, then run serve -s build. This can take a minute or two to compile the build and is not necessary for a project this size.
 
 ![alt text](./public/document.gif "Logo Title Text 1")
 
-
+This will boot up a development server of the application. Alternatively, you can run "yarn build" to compile a build version, then run serve -s build. This can take a minute or two to compile the build and is not necessary for a project this size.
 
 # Default Provided Scripts
 
