@@ -22,6 +22,37 @@ Once the file is cloned, cd into the directory then run:
 
 This will boot up a development server of the application. Alternatively, you can run "yarn build" to compile a build version, then run serve -s build. This can take a minute or two to compile the build and is not necessary for a project this size.
 
+Once you're done you should be able to mess around with the project like you see above. The features in this implementation are very basic, but again, they provide a great referencepoint and are very easy to expand on. As an example, refer to my sm-frontend repo.
+
+## Components
+
+The Component tree for this app is very straightforward:
+
+App -< Canvas -< Globe -< Country
+
+### App
+
+App's only function is to render the canvas
+
+### Canvas
+
+The canvas component is the top level component that holds the state of everything in the app. It's state properties are:
+
+    - mounted: whether or not the component has fully mounted, used to make sure Globe renders after svg canvas
+    - globeRotation: stores current rotation of globe
+    - selectable: toggles selectability of continents
+    - isRotating: toggles rotation of globe on/off
+    - lamRotationSpeed: speed of rotation on lambda (normal earth rotation direction)
+    - phiRotationSpeed: speed of rotation on phi ("pitch")
+    - gamRotationSpeed: speed of rotation on gamm ("roll")
+    - clock: holds interval clock object for rotatino ticks
+    - scale: holds scale of globe, adjustable
+
+Canvas generates all the state defaults, the forms to alter state, and increments the globe based on any active timers. Once the canvas successfully mounts, the Globe component is called to render next.
+
+### Globe
+
+
 # Default Provided Scripts
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
