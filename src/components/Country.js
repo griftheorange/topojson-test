@@ -7,6 +7,7 @@ class Country extends Component {
     constructor(){
         super()        
         
+        //sets default country colors
         this.state = {
             color: '#b0b0b0',
             stroke: '#808080',
@@ -14,12 +15,14 @@ class Country extends Component {
         }
     }
 
+    //on hover sets color to orange
     handleMouseOver = (evt) => {
         this.setState({
             color: 'orange'
         })
     }
 
+    //reverses hover
     handleMouseOut = (evt) => {
         this.setState({
             color: '#b0b0b0',
@@ -27,22 +30,26 @@ class Country extends Component {
         })
     }
 
+    //on mousedown adds border
     handleMouseDown = (evt) => {
         this.setState({
             strokeWidth: '1px'
         })
     }
 
+    //reverses mousedown
     handleMouseUp = (evt) => {
         this.setState({
             strokeWidth: '0px'
         })
     }
 
+    //on click logs clicked feature to console
     handleClick = (evt) => {
         console.log(this.props.datum.properties.continent)
     }
 
+    //returns path generator with orthographic projection
     getPath = (datum) => {       
         let projection = d3.geoOrthographic()
             .translate([this.props.canvasHolder.offsetWidth/2, this.props.canvasHolder.offsetHeight/2])
@@ -55,6 +62,7 @@ class Country extends Component {
         return path(datum)
     }
 
+    // returns path generator raised off the surface to render floating circles 
     getRaisedPath = (datum) => {
         let projection = d3.geoOrthographic()
             .translate([this.props.canvasHolder.offsetWidth/2, this.props.canvasHolder.offsetHeight/2])

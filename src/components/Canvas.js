@@ -16,6 +16,8 @@ class Canvas extends Component {
         scale: 250
     }
 
+    //component neets to mount for Globe to render properly, handled by mounted state
+    //Also toggles rotation based on default for easier testing
     componentDidMount(){
         if(this.state.isRotating){
             this.startClock()
@@ -25,6 +27,7 @@ class Canvas extends Component {
         })
     }
 
+    //updates globe rotation state each time interval ticks
     updateRotation = (lam, phi, gam) => {
         let current = this.state.globeRotation
         let update = current
@@ -46,6 +49,7 @@ class Canvas extends Component {
         })
     }
 
+    //handles scroll for zoom in zoom out
     handleWheel = (evt) => {
         let current = this.state.scale
         this.setState({
@@ -53,18 +57,19 @@ class Canvas extends Component {
         })
     } 
 
-    handleChange = (evt) => {
-        if(this.clock){
-            this.stopClock()
-            this.setState({
-                lamRotationSpeed: parseFloat(evt.target.value)/2
-            }, this.startClock())
-        } else {
-            this.setState({
-                lamRotationSpeed: parseFloat(evt.target.value)/2
-            })
-        }
-    }
+
+    // handleChange = (evt) => {
+    //     if(this.clock){
+    //         this.stopClock()
+    //         this.setState({
+    //             lamRotationSpeed: parseFloat(evt.target.value)/2
+    //         }, this.startClock())
+    //     } else {
+    //         this.setState({
+    //             lamRotationSpeed: parseFloat(evt.target.value)/2
+    //         })
+    //     }
+    // }
 
     handleLambdaChange = (evt) => {
         let newArr = this.state.globeRotation
