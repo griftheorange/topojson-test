@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import * as d3 from 'd3'
-import topojson from 'topojson'
-import * as d3proj from 'd3-geo-projection'
 
 class Country extends Component {
 
