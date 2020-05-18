@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import * as d3 from 'd3'
 import topojson from 'topojson'
 import * as d3proj from 'd3-geo-projection'
-import yeet from '../resources/yeet-sound-effect.mp3'
-import africa from '../resources/africa_t3h9tMv.mp3'
 
 class Country extends Component {
 
