@@ -15,6 +15,7 @@ class Globe extends Component {
         super()
         // let data = feature(countriesTopo, countriesTopo.objects.countries1).features
         let data = feature(continentsTopo, continentsTopo.objects.continent).features
+        console.log(data)
         this.state = {
             drawingData: data
         }
@@ -28,9 +29,9 @@ class Globe extends Component {
                 this.state.drawingData.map((countryData, i) => {
                     return (
                         <>
-                        <path d={this.getPath({type:"Sphere"})} 
+                        {/* <path d={this.getPath({type:"Sphere"})} 
                               style={{fill:"none", strokeWidth:"0.05px", stroke:"a0a0a0"}}
-                              ></path>
+                              ></path> */}
                         <Country key={i} 
                                  canvasHolder={this.props.canvasHolder} 
                                  globeRotation={this.props.globeRotation} 
@@ -112,7 +113,9 @@ class Globe extends Component {
             <>
                 {this.genCountries()}
                 <path className="quakeCircles" d={this.getRaisedPath(d3.geoCircle().center([0, 0]).radius(3)())} style={{fill: "red", opacity: "0.5"}}></path>
-            <path className="quakeCircles" d={this.getPath(d3.geoCircle().center([0, 0]).radius(3)())} style={{fill: "red", opacity: "0.2"}}></path>
+                <path className="quakeCircles" d={this.getPath(d3.geoCircle().center([0, 0]).radius(3)())} style={{fill: "red", opacity: "0.2"}}></path>
+                <path className="quakeCircles" d={this.getRaisedPath(d3.geoCircle().center([10, 0]).radius(3)())} style={{fill: "red", opacity: "0.5"}}></path>
+                <path className="quakeCircles" d={this.getPath(d3.geoCircle().center([10, 0]).radius(3)())} style={{fill: "red", opacity: "0.2"}}></path>
             </>
         );
     }
