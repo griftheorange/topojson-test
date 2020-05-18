@@ -42,7 +42,7 @@ class Country extends Component {
     }
 
     handleClick = (evt) => {
-        console.log(this.props.datum)
+        console.log(this.props.datum.properties.continent)
     }
 
     getPath = (datum) => {       

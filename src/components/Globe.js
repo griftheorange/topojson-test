@@ -29,9 +29,9 @@ class Globe extends Component {
                 this.state.drawingData.map((countryData, i) => {
                     return (
                         <>
-                        {/* <path d={this.getPath({type:"Sphere"})} 
+                        <path d={this.getPath({type:"Sphere"})} 
                               style={{fill:"none", strokeWidth:"0.05px", stroke:"a0a0a0"}}
-                              ></path> */}
+                              ></path>
                         <Country key={i} 
                                  canvasHolder={this.props.canvasHolder} 
                                  globeRotation={this.props.globeRotation} 
