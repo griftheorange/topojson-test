@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "d3": "^5.15.0",
+    "d3": "^7.6.1",
     "d3-geo-projection": "^2.8.1",
     "d3-timer": "^1.0.10",
     "queue": "^6.0.1",
